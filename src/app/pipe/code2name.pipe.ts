@@ -9,21 +9,21 @@ export enum PipeParm {
 export class Code2namePipe implements PipeTransform {
 
   transform(code: any, flag: string): any {
-    let name: any;
+    // let name: any;
     if (flag === PipeParm.DrinkType) {
       switch (code) {
-        case 1: name = '精選'; return name;
-        case 2: name = '牛奶'; return name;
-        case 3: name = '特調'; return name;
-        case 4: name = '水果特調 '; return name;
-        case 5: name = '無酒精飲料 '; return name;
-        case 6: name = '芒果冰'; return name;
-        case 7: name = '雞蛋仔'; return name;
+        case 1: return '精選';
+        case 2: return '特調';
+        case 3: return '牛奶';
+        case 4: return '水果';
+        case 5: return '無酒精飲料';
+        case 6: return '芒果冰';
+        case 7: return '雞蛋仔';
         default: return '精選';
       }
     }
     if (flag === PipeParm.DrinkSweetness) {
-      if (code) {
+      if (code === true) {
         return '可調甜度';
       } else {
         return '固定甜度';
