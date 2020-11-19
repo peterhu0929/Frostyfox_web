@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { of } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductEditComponent } from '../product-edit/product-edit.component';
 
 @Component({
   selector: 'app-product',
@@ -15,14 +17,15 @@ export class ProductComponent implements OnInit {
 
   constructor(public fb: FormBuilder,
     private programService: ProgramsService,
+    private _dialog: MatDialog,
     private shareDialogService: ShareDialogService) { }
   newItemForm: FormGroup;
-
+  selectItemForm: FormGroup;
   public products: Array<Product> = new Array<Product>();
   DrinkTypeList = [
     { ItemText: '精選 ', ItemValue: 1 },
-    { ItemText: '牛奶', ItemValue: 2 },
-    { ItemText: '特調', ItemValue: 3 },
+    { ItemText: '特調', ItemValue: 2 },
+    { ItemText: '牛奶', ItemValue: 3 },
     { ItemText: '水果特調', ItemValue: 4 },
     { ItemText: '無酒精飲料', ItemValue: 5 },
     { ItemText: '芒果冰', ItemValue: 6 },
@@ -39,6 +42,13 @@ export class ProductComponent implements OnInit {
       type: ['', [Validators.required]],
       price: [Validators.required],
       sweetness: ['false'],
+    });
+    this.selectItemForm = this.fb.group({
+      id: [null],
+      name: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      price: [Validators.required],
+      sweetness: [],
     });
   }
   onSubmit(value?: any) {
@@ -60,8 +70,37 @@ export class ProductComponent implements OnInit {
     }, (error: HttpErrorResponse) => alert('call error')
     );
   }
-  openDialog() {
-    this.shareDialogService.openShareDialog('Test');
+  selectRecord(selectItem: Product) {
+    this.selectItemForm.get('id').setValue(selectItem.id);
+    this.selectItemForm.get('name').setValue(selectItem.name);
+    this.selectItemForm.get('type').setValue(selectItem.type);
+    this.selectItemForm.get('price').setValue(selectItem.price);
+    this.selectItemForm.get('sweetness').setValue(selectItem.sweetness);
+    // console.log(this.selectItemForm.value);
+    this.openDialog(this.selectItemForm);
+  }
+  openDialog(selectItem: FormGroup) {
+    const dialogRef = this._dialog.open(ProductEditComponent, {
+      width: '800px',
+      data: {
+        selectedViewItem: selectItem,
+      },
+      disableClose: false // focus or not
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result.Status) {
+        this.updateData(result.UpdateData);
+      }
+    });
+    // this.shareDialogService.openShareDialog('Test');
+  }
+  updateData(value) {
+    console.log(value);
+    var targetData = this.products;
+    const UpdateIdx = targetData.findIndex(x => x.id === value.id);
+    const update$ = of(targetData.splice(UpdateIdx, 1, value));
+    update$.subscribe(()=>this.shareDialogService.openShareDialog('修改成功'));
   }
   deleteData(value) {
     console.log(value);
@@ -69,6 +108,5 @@ export class ProductComponent implements OnInit {
     const DelIdx = targetData.findIndex(x => x.id === value);
     const delete$ = of(targetData.splice(DelIdx, 1));
     delete$.subscribe(() => this.shareDialogService.openShareDialog('刪除成功'));
-    //
   }
 }
