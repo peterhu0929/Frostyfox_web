@@ -1,5 +1,4 @@
-<p>product works!</p>
-<mat-checkbox>Check me!</mat-checkbox>
+<!-- <mat-checkbox>Check me!</mat-checkbox>
 
 <mat-form-field>
   <input matInput placeholder="Favorite food" value="Vegetable">
@@ -9,4 +8,35 @@
   <span matTooltip="Add">
     <mat-icon>add</mat-icon>
   </span>
-</button>
+</button> -->
+
+<!-- {{products|json}} -->
+
+
+<!-- <div *ngIf="products.length<0">
+  <h2>尚未有資料</h2>
+</div>
+<div *ngIf="products.length>0"> -->
+<div class="GroupCard">
+  <mat-card *ngFor="let results of products">
+    <!-- (click)="openMapDialog(results.properties.name)"> -->
+    <mat-card-header>
+      <h2>{{results.name}}</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <h3>{{results.price|currency:'TWD'}}</h3>
+      <!-- <img src="../../../assets/img/test.jpg" class="img-fluid" alt> -->
+      <mat-chip-list style="text-align:center;">
+        <!-- Type -->
+        <mat-chip color="primary" selected>
+          {{results.type|code2name:'DrinkType'}}
+        </mat-chip>
+        <!-- Sweetness -->
+        <mat-chip color="accent" selected>
+          {{results.sweetness|code2name:'DrinkSweetness'}}
+        </mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+  </mat-card>
+  <!-- </div> -->
+</div>
