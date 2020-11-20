@@ -1,28 +1,32 @@
-<form [formGroup]="newItemForm" (ngSubmit)="onSubmit(newItemForm.value)">
+<form [formGroup]="newItemForm">
 
-    <mat-form-field>
-        <mat-label>Item Name</mat-label>
-        <input type="text" matInput required [formControl]="newItemForm.controls['name']">
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Item Type</mat-label>
-        <!-- <input type="number" matInput required formControlName="type"> -->
-        <mat-select formControlName="type">
-            <mat-option [value]="gradeArray.ItemValue" *ngFor="let gradeArray of DrinkTypeList">
-                {{gradeArray.ItemText}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Item Price</mat-label>
-        <input type="number" matInput required min=1 formControlName="price">
-    </mat-form-field>
-    <mat-label>Adjust sweetness</mat-label>
-    <mat-radio-group aria-label="Select an option" formControlName="sweetness">
-        <mat-radio-button value='true'>Yes</mat-radio-button>
-        <mat-radio-button value='false'> No</mat-radio-button>
-    </mat-radio-group>
-    <div class="button-wrapper">
-        <button mat-flat-button color="warn">修改</button>
-    </div>
+  <mat-form-field>
+    <mat-label>Item Name</mat-label>
+    <input type="text" matInput required [formControl]="newItemForm.controls['name']">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Item Type</mat-label>
+    <!-- <input type="number" matInput required formControlName="type"> -->
+    <mat-select formControlName="type">
+      <mat-option [value]="gradeArray.ItemValue" *ngFor="let gradeArray of DrinkTypeList">
+        {{gradeArray.ItemText}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Item Price</mat-label>
+    <input type="number" matInput required min=1 formControlName="price">
+  </mat-form-field>
+  <mat-label>Adjust sweetness</mat-label>
+  <mat-radio-group aria-label="Select an option" formControlName="sweetness">
+    <mat-radio-button value='true'>Yes</mat-radio-button>
+    <mat-radio-button value='false'> No</mat-radio-button>
+  </mat-radio-group>
+  <div class="button-wrapper" style="text-align: right;">
+    <button mat-flat-button (click)="onSubmit(newItemForm.value)" color="warn">修改</button>
+    <button mat-flat-button (click)="onNoClick()" color="primary">取消</button>
+  </div>
+  <!-- <div class="button-wrapper">
+
+  </div> -->
 </form>

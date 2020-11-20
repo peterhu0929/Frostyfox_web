@@ -23,7 +23,7 @@ export class Code2namePipe implements PipeTransform {
       }
     }
     if (flag === PipeParm.DrinkSweetness) {
-      if (code === true) {
+      if (code === 'true') {
         return '可調甜度';
       } else {
         return '固定甜度';

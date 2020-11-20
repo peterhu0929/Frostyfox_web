@@ -59,7 +59,8 @@ export class ProductComponent implements OnInit {
       return;
     }
     value.id = this.programService.genProductID();
-    targetData.unshift(value);
+    const create$ = of(targetData.unshift(value));
+    create$.subscribe(() => this.shareDialogService.openShareDialog('新增成功'));
   }
   getProduct() {
     this.programService.getProduct().subscribe((res: any) => {
@@ -77,9 +78,10 @@ export class ProductComponent implements OnInit {
     this.selectItemForm.get('price').setValue(selectItem.price);
     this.selectItemForm.get('sweetness').setValue(selectItem.sweetness);
     // console.log(this.selectItemForm.value);
-    this.openDialog(this.selectItemForm);
+    this.openUpdateDialog(this.selectItemForm);
   }
-  openDialog(selectItem: FormGroup) {
+  openUpdateDialog(selectItem: FormGroup) {
+    console.log(selectItem.value);
     const dialogRef = this._dialog.open(ProductEditComponent, {
       width: '800px',
       data: {
@@ -91,16 +93,36 @@ export class ProductComponent implements OnInit {
       console.log(result);
       if (result.Status) {
         this.updateData(result.UpdateData);
+      } else {
+        console.log('nothing');
       }
     });
     // this.shareDialogService.openShareDialog('Test');
+  }
+  openCreateDialog() {
+    this.initNewForm();
+    const dialogRef = this._dialog.open(ProductEditComponent, {
+      width: '800px',
+      data: {
+        selectedViewItem: this.newItemForm,
+      },
+      disableClose: false // focus or not
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result.Status) {
+        this.onSubmit(result.UpdateData);
+      } else {
+        console.log('nothing');
+      }
+    });
   }
   updateData(value) {
     console.log(value);
     var targetData = this.products;
     const UpdateIdx = targetData.findIndex(x => x.id === value.id);
     const update$ = of(targetData.splice(UpdateIdx, 1, value));
-    update$.subscribe(()=>this.shareDialogService.openShareDialog('修改成功'));
+    update$.subscribe(() => this.shareDialogService.openShareDialog('修改成功'));
   }
   deleteData(value) {
     console.log(value);

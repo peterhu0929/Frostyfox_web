@@ -1,79 +1,75 @@
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            Create
-        </mat-panel-title>
-        <mat-panel-description>
-            Input new item
-            <mat-icon>local_drink</mat-icon>
-        </mat-panel-description>
-    </mat-expansion-panel-header>
+<!-- <mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Create new item
+    </mat-panel-title>
+    <mat-panel-description>
+      <mat-icon>local_drink</mat-icon>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <form [formGroup]="newItemForm" (ngSubmit)="createData(newItemForm.value)">
+    <mat-form-field>
+      <mat-label>Item Name</mat-label>
+      <input type="text" matInput required [formControl]="newItemForm.controls['name']">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Item Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option [value]="gradeArray.ItemValue" *ngFor="let gradeArray of DrinkTypeList">
+          {{gradeArray.ItemText}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Item Price</mat-label>
+      <input type="number" matInput required min=1 formControlName="price">
+    </mat-form-field>
+    <mat-label>Adjust sweetness</mat-label>
+    <mat-radio-group aria-label="Select an option" formControlName="sweetness">
+      <mat-radio-button value='true'>Yes</mat-radio-button>
+      <mat-radio-button value='false'> No</mat-radio-button>
+    </mat-radio-group>
+    <div class="button-wrapper">
+      <button mat-flat-button color="primary">新增</button>
+    </div>
+  </form>
 
-    <form [formGroup]="newItemForm" (ngSubmit)="onSubmit(newItemForm.value)">
-
-        <mat-form-field>
-            <mat-label>Item Name</mat-label>
-            <input type="text" matInput required [formControl]="newItemForm.controls['name']">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Item Type</mat-label>
-            <!-- <input type="number" matInput required formControlName="type"> -->
-            <mat-select formControlName="type">
-                <mat-option [value]="gradeArray.ItemValue" *ngFor="let gradeArray of DrinkTypeList">
-                    {{gradeArray.ItemText}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Item Price</mat-label>
-            <input type="number" matInput required min=1 formControlName="price">
-        </mat-form-field>
-        <mat-label>Adjust sweetness</mat-label>
-        <mat-radio-group aria-label="Select an option" formControlName="sweetness">
-            <mat-radio-button value='true'>Yes</mat-radio-button>
-            <mat-radio-button value='false'> No</mat-radio-button>
-        </mat-radio-group>
-        <div class="button-wrapper">
-            <button mat-flat-button color="primary">新增</button>
-        </div>
-    </form>
-
-
-</mat-expansion-panel>
-<!-- <button mat-fab color="warn" (click)="openDialog()">Test</button> -->
+</mat-expansion-panel> -->
+<button mat-fab color="primary" (click)="openCreateDialog()">Create</button>
 
 
 <div *ngIf=" products.length==0">
-    <h2>尚未有資料</h2>
+  <h2>尚未有資料</h2>
 </div>
 <div *ngIf="products">
-    <div class="GroupCard">
-        <mat-card *ngFor="let results of products" matBadge={{results.id}} matBadgePosition="before" matBadgeColor="warn" (click)="selectRecord(results)">
-            <mat-card-header>
-                <h2>{{results.name}}</h2>
-                <div style="text-align:right;">
-                    <button mat-icon-button (click)="deleteData(results.id)">
-                         <mat-icon>close</mat-icon>
-                    </button>
-                </div>
-            </mat-card-header>
-            <mat-card-content>
-                <h3 style="text-align:center;">{{results.price|currency:'TWD'}}</h3>
-                <!-- <img src="../../../assets/img/test.jpg" class="img-fluid" alt> -->
-                <mat-chip-list style="text-align:center;">
-                    <!-- Type -->
-                    <mat-chip color="primary" selected>
-                        {{results.type|code2name:'DrinkType'}}
-                    </mat-chip>
-                    <!-- Sweetness -->
-                    <mat-chip color="accent" selected>
-                        {{results.sweetness|code2name:'DrinkSweetness'}}
-                    </mat-chip>
+  <div class="GroupCard">
+    <mat-card *ngFor="let results of products" matBadge={{results.id}} matBadgePosition="before" matBadgeColor="warn"
+      (click)="selectRecord(results)">
+      <mat-card-header>
+        <h2>{{results.name}}</h2>
+        <div style="text-align:right;">
+          <button mat-icon-button (click)="deleteData(results.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <h3 class="price-style">{{results.price|currency:'TWD'}}</h3>
+        <!-- <img src="../../../assets/img/test.jpg" class="img-fluid" alt> -->
+        <mat-chip-list style="text-align:center;">
+          <!-- Type -->
+          <mat-chip color="primary" selected>
+            {{results.type|code2name:'DrinkType'}}
+          </mat-chip>
+          <!-- Sweetness -->
+          <mat-chip color="accent" selected>
+            {{results.sweetness|code2name:'DrinkSweetness'}}
+          </mat-chip>
 
 
-                </mat-chip-list>
+        </mat-chip-list>
 
-            </mat-card-content>
-        </mat-card>
-    </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

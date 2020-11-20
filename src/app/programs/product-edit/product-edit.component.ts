@@ -14,7 +14,7 @@ export class ProductEditComponent implements OnInit {
     public dialogRef: MatDialogRef<ProductEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
   newItemForm: FormGroup;
-    DrinkTypeList = [
+  DrinkTypeList = [
     { ItemText: '精選 ', ItemValue: 1 },
     { ItemText: '特調', ItemValue: 2 },
     { ItemText: '牛奶', ItemValue: 3 },
@@ -40,5 +40,8 @@ export class ProductEditComponent implements OnInit {
 
   onSubmit(value?: any) {
     this.dialogRef.close({ Status: true, UpdateData: this.newItemForm.value });
+  }
+  onNoClick(): void {
+    this.dialogRef.close({ Status: false });
   }
 }
