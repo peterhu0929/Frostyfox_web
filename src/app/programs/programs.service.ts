@@ -13,6 +13,10 @@ export class ProgramsService {
   ) { }
   public productData: any;
 
+  getDemoProduct(): Observable<Product> {
+    const URL = environment.localserver + '/demo/GetALL';
+    return this.http.get<Product>(URL);
+  }
   getProduct(): Observable<Product> {
     const URL = environment.jsonserver + 'products';
     return this.http.get<Product>(URL);

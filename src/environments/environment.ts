@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  jsonserver: 'http://localhost:3000/'
+  jsonserver: 'http://localhost:3000/',
+  localserver: 'https://localhost:5001/api'
 };
 
 /*

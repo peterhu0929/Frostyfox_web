@@ -51,7 +51,7 @@ export class ProductComponent implements OnInit {
       sweetness: [],
     });
   }
-  onSubmit(value?: any) {
+  createData(value?: any) {
     console.log(value);
     var targetData = this.products;
     if (targetData.findIndex(x => x.id === value.id) > -1) {
@@ -63,7 +63,7 @@ export class ProductComponent implements OnInit {
     create$.subscribe(() => this.shareDialogService.openShareDialog('新增成功'));
   }
   getProduct() {
-    this.programService.getProduct().subscribe((res: any) => {
+    this.programService.getDemoProduct().subscribe((res: any) => {
       if (res) {
         this.products = res;
         console.log(this.products);
@@ -111,7 +111,7 @@ export class ProductComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result.Status) {
-        this.onSubmit(result.UpdateData);
+        this.createData(result.UpdateData);
       } else {
         console.log('nothing');
       }
