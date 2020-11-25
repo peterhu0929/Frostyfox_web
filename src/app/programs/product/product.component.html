@@ -42,8 +42,9 @@
   <h2>尚未有資料</h2>
 </div>
 <div *ngIf="products">
+  {{products|json}}
   <div class="GroupCard">
-    <mat-card *ngFor="let results of products" matBadge={{results.id}} matBadgePosition="before" matBadgeColor="warn"
+    <mat-card *ngFor="let results of products" matBadge={{results.ID}} matBadgePosition="before" matBadgeColor="warn"
       (click)="selectRecord(results)">
       <mat-card-header>
         <h2>{{results.name}}</h2>

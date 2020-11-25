@@ -2,12 +2,12 @@
 
   <mat-form-field>
     <mat-label>Item Name</mat-label>
-    <input type="text" matInput required [formControl]="newItemForm.controls['name']">
+    <input type="text" matInput required [formControl]="newItemForm.controls['NAME']">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Item Type</mat-label>
     <!-- <input type="number" matInput required formControlName="type"> -->
-    <mat-select formControlName="type">
+    <mat-select formControlName="TYPE">
       <mat-option [value]="gradeArray.ItemValue" *ngFor="let gradeArray of DrinkTypeList">
         {{gradeArray.ItemText}}
       </mat-option>
@@ -15,10 +15,10 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Item Price</mat-label>
-    <input type="number" matInput required min=1 formControlName="price">
+    <input type="number" matInput required min=1 formControlName="PRICE">
   </mat-form-field>
   <mat-label>Adjust sweetness</mat-label>
-  <mat-radio-group aria-label="Select an option" formControlName="sweetness">
+  <mat-radio-group aria-label="Select an option" formControlName="SWEETNESS">
     <mat-radio-button value='true'>Yes</mat-radio-button>
     <mat-radio-button value='false'> No</mat-radio-button>
   </mat-radio-group>

@@ -11,7 +11,7 @@ export class Code2namePipe implements PipeTransform {
   transform(code: any, flag: string): any {
     // let name: any;
     if (flag === PipeParm.DrinkType) {
-      switch (code) {
+      switch (+code) {
         case 1: return '精選';
         case 2: return '特調';
         case 3: return '牛奶';
