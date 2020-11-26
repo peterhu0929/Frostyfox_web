@@ -35,17 +35,19 @@
   </form>
 
 </mat-expansion-panel> -->
-<button mat-fab color="primary" (click)="openCreateDialog()">Create</button>
+<button mat-fab color="primary" (click)="openCreateDialog()">
+  <mat-icon>add</mat-icon>
+</button>
 
 
 <div *ngIf=" products.length==0">
   <h2>尚未有資料</h2>
 </div>
 <div *ngIf="products">
-  {{products|json}}
+  <!-- {{products|json}} -->
+  <h2>總共{{products.length}}筆資料</h2>
   <div class="GroupCard">
-    <mat-card *ngFor="let results of products" matBadge={{results.ID}} matBadgePosition="before" matBadgeColor="warn"
-      (click)="selectRecord(results)">
+    <mat-card *ngFor="let results of products" matBadge={{results.id}} matBadgePosition="before" matBadgeColor="warn">
       <mat-card-header>
         <h2>{{results.name}}</h2>
         <div style="text-align:right;">
@@ -66,11 +68,15 @@
           <mat-chip color="accent" selected>
             {{results.sweetness|code2name:'DrinkSweetness'}}
           </mat-chip>
-
-
         </mat-chip-list>
-
       </mat-card-content>
+      <mat-card-footer style="text-align:center;">
+        <button mat-icon-button (click)="selectRecord(results)">
+          <span matTooltip="Edit">
+            <mat-icon>edit</mat-icon>
+          </span>
+        </button>
+      </mat-card-footer>
     </mat-card>
   </div>
 </div>

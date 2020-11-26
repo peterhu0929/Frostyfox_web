@@ -14,6 +14,7 @@ export class ProductEditComponent implements OnInit {
     public dialogRef: MatDialogRef<ProductEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
   newItemForm: FormGroup;
+  btnActionFlag: string;
   DrinkTypeList = [
     { ItemText: '精選 ', ItemValue: '1' },
     { ItemText: '特調', ItemValue: '2' },
@@ -25,18 +26,9 @@ export class ProductEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.newItemForm = this.data.selectedViewItem;
+    this.btnActionFlag = this.data.actionFlag;
     console.log(this.newItemForm.value);
   }
-
-  // initNewForm() {
-  //   this.newItemForm = this.fb.group({
-  //     id: [null],
-  //     name: ['', [Validators.required]],
-  //     type: ['', [Validators.required]],
-  //     price: [Validators.required],
-  //     sweetness: []
-  //   });
-  // }
 
   onSubmit(value?: any) {
     this.dialogRef.close({ Status: true, UpdateData: this.newItemForm.value });

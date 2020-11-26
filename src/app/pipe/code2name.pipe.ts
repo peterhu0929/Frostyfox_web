@@ -15,7 +15,7 @@ export class Code2namePipe implements PipeTransform {
         case 1: return '精選';
         case 2: return '特調';
         case 3: return '牛奶';
-        case 4: return '水果';
+        case 4: return '水果特調';
         case 5: return '無酒精飲料';
         case 6: return '芒果冰';
         case 7: return '雞蛋仔';

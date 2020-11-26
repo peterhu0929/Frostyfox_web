@@ -23,7 +23,10 @@
     <mat-radio-button value='false'> No</mat-radio-button>
   </mat-radio-group>
   <div class="button-wrapper" style="text-align: right;">
-    <button mat-flat-button (click)="onSubmit(newItemForm.value)" color="warn">修改</button>
+    <button mat-flat-button *ngIf="btnActionFlag==='Create'" (click)="onSubmit(newItemForm.value)"
+      color="accent">新增</button>
+    <button mat-flat-button *ngIf="btnActionFlag==='Update'" (click)="onSubmit(newItemForm.value)"
+      color="warn">修改</button>
     <button mat-flat-button (click)="onNoClick()" color="primary">取消</button>
   </div>
   <!-- <div class="button-wrapper">

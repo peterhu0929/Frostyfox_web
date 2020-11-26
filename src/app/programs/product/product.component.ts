@@ -37,7 +37,7 @@ export class ProductComponent implements OnInit {
   }
   initNewForm() {
     this.newItemForm = this.fb.group({
-      ID: [333],
+      ID: [111],
       NAME: ['', [Validators.required]],
       TYPE: ['', [Validators.required]],
       PRICE: [Validators.required],
@@ -64,7 +64,8 @@ export class ProductComponent implements OnInit {
     // create$.subscribe(() => this.shareDialogService.openShareDialog('新增成功'));
     console.log(value);
     this.programService.addProduct(value).subscribe((response: any) => {
-      this.shareDialogService.openShareDialog('新增成功');
+      // console.log(response);
+      this.programService.OpenSanckBar(response.name, '新增成功');
       this.getProduct();
     }, (error: HttpErrorResponse) => {
       this.programService.HandleError(error);
@@ -98,6 +99,7 @@ export class ProductComponent implements OnInit {
       width: '800px',
       data: {
         selectedViewItem: selectItem,
+        actionFlag: 'Update'
       },
       disableClose: false // focus or not
     });
@@ -117,6 +119,7 @@ export class ProductComponent implements OnInit {
       width: '800px',
       data: {
         selectedViewItem: this.newItemForm,
+        actionFlag: 'Create'
       },
       disableClose: false // focus or not
     });
@@ -136,7 +139,7 @@ export class ProductComponent implements OnInit {
     // const update$ = of(targetData.splice(UpdateIdx, 1, value));
     // update$.subscribe(() => this.shareDialogService.openShareDialog('修改成功'));
     this.programService.updateProduct(value).subscribe((response: any) => {
-      this.shareDialogService.openShareDialog('更新成功');
+      this.programService.OpenSanckBar(response.name, '更新成功');
       this.getProduct();
     }, (error: HttpErrorResponse) => {
       this.programService.HandleError(error);
@@ -149,7 +152,7 @@ export class ProductComponent implements OnInit {
     // const delete$ = of(targetData.splice(DelIdx, 1));
     // delete$.subscribe(() => this.shareDialogService.openShareDialog('刪除成功'));
     this.programService.delProduct(ProductID).subscribe((response: any) => {
-      this.shareDialogService.openShareDialog('刪除成功');
+      this.programService.OpenSanckBar(null, '刪除成功');
       this.getProduct();
     }, (error: HttpErrorResponse) => {
       this.programService.HandleError(error);

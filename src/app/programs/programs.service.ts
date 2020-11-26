@@ -1,3 +1,4 @@
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ShareDialogService } from './../share/share-dialog/share-dialog.service';
 import { Product } from './../model/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,7 +12,8 @@ import { environment } from './../../environments/environment';
 export class ProgramsService {
   constructor(
     private http: HttpClient,
-    private dialogService: ShareDialogService
+    private dialogService: ShareDialogService,
+    private _sanckBar: MatSnackBar
   ) { }
   public httpOptions = {
     headers: new HttpHeaders({
@@ -45,9 +47,14 @@ export class ProgramsService {
     var roundID = Math.floor(Math.random() * 100) + 1;
     return roundID;
   }
+
+
+  OpenSanckBar(message: string, action: string) {
+    this._sanckBar.open(message, action, { duration: 2000 });
+  }
   HandleError(e: any): void {
     // console.log(e.error.InnerException.InnerException);
     console.log(e.error);
-    this.dialogService.openShareDialog(e.error.title);
+    this.dialogService.openShareDialog(e.error);
   }
 }
