@@ -1,0 +1,10 @@
+<!-- Container to inject the Sign-In Widget -->
+<div id="okta-signin-container"></div>
+
+<div *ngIf="LogoInfo">
+
+  {{this.LogoInfo.profile.firstName}}
+  {{this.LogoInfo.profile.lastName}}
+  {{this.LogoInfo.profile.login}}
+  {{this.LogoInfo.profile.timeZone}}
+</div>

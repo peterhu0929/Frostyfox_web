@@ -47,6 +47,13 @@
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
+<!-- Latest CDN production CSS -->
+<link href="https://global.oktacdn.com/okta-signin-widget/5.0.2/css/okta-sign-in.min.css" type="text/css"
+  rel="stylesheet" />
 
+<button mat-raised-button color="warn" routerLink="/"> Home </button>
+<button mat-raised-button color="primary" *ngIf="!isAuthenticated" routerLink="/login"> Login </button>
+<button mat-raised-button *ngIf="isAuthenticated" (click)="logout()"> Logout </button>
+<button mat-raised-button color="accent" routerLink="/protected"> Protected </button>
 
 <router-outlet></router-outlet>
