@@ -10,6 +10,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';// <-- NgModel
 import { ProductComponent } from './programs/product/product.component';
 import { ShareDialogComponent } from './share/share-dialog/share-dialog.component';
 import { ProductEditComponent } from './programs/product-edit/product-edit.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HomeComponent } from './programs/home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { ProductEditComponent } from './programs/product-edit/product-edit.compo
     ProductComponent,
     StoryComponent,
     ShareDialogComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import { ProductEditComponent } from './programs/product-edit/product-edit.compo
     AngularMaterialModule,
     PipeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OAuthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
