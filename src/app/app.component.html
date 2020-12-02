@@ -46,7 +46,19 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
+<button mat-raised-button color="warn" (click)="signInWithGoogle()"> Google </button>
+<div *ngIf="loggedIn">
+  <h1>Logged in Google</h1>
+  <img src="{{ user.photoUrl }}">
+  <div>
+    <h4>{{ user.name }}</h4>
+    <p>{{ user.email }}</p>
+    <h3>{{user.authorizationCode}}</h3>
+    <h3>{{user.authToken}}</h3>
+  </div>
+  <button mat-raised-button (click)="refreshToken()"> RefreshToken </button>
+  <button mat-raised-button color="primary" (click)="signOut()"> Logout </button>
+</div>
 
 
 <router-outlet></router-outlet>
