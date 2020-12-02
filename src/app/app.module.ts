@@ -15,6 +15,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider
 } from 'angularx-social-login';
+import { HomeComponent } from './programs/home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {
     ProductComponent,
     StoryComponent,
     ShareDialogComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

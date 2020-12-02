@@ -1,6 +1,7 @@
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
   title = 'Frostyfox';
   user: SocialUser;
   loggedIn: boolean;
-  constructor(private authService: SocialAuthService) { }
+  constructor(private router: Router, private authService: SocialAuthService) { }
 
   ngOnInit() {
     this.getUserInfo();
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
   }
   signOut(): void {
     this.authService.signOut();
+    this.router.navigateByUrl('/home');
   }
   refreshToken(): void {
     const refresh$ = of(this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID));
