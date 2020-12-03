@@ -85,11 +85,11 @@ export class ProductComponent implements OnInit {
   }
   selectRecord(selectItem: Product) {
     console.log(selectItem);
-    this.selectItemForm.get('ID').setValue(selectItem.id);
-    this.selectItemForm.get('NAME').setValue(selectItem.name);
-    this.selectItemForm.get('TYPE').setValue(selectItem.type);
-    this.selectItemForm.get('PRICE').setValue(selectItem.price);
-    this.selectItemForm.get('SWEETNESS').setValue(selectItem.sweetness);
+    this.selectItemForm.get('ID').setValue(selectItem.ID);
+    this.selectItemForm.get('NAME').setValue(selectItem.NAME);
+    this.selectItemForm.get('TYPE').setValue(selectItem.TYPE);
+    this.selectItemForm.get('PRICE').setValue(selectItem.PRICE);
+    this.selectItemForm.get('SWEETNESS').setValue(selectItem.SWEETNESS);
     // console.log(this.selectItemForm.value);
     this.openUpdateDialog(this.selectItemForm);
   }
