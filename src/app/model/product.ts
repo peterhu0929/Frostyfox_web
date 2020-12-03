@@ -1,15 +1,15 @@
 export class Product implements IProduct {
-  id: number;
-  name: string;
-  type: string;
-  price: number;
-  sweetness: boolean;
+  ID: number;
+  NAME: string;
+  TYPE: string;
+  PRICE: number;
+  SWEETNESS: boolean;
 }
 
 export interface IProduct {
-  id: number;
-  name: string;
-  type: string;
-  price: number;
-  sweetness: boolean;
+  ID: number;
+  NAME: string;
+  TYPE: string;
+  PRICE: number;
+  SWEETNESS: boolean;
 }
