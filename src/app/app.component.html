@@ -20,6 +20,13 @@
   <div>
     <nav>
       <ul>
+        <li *ngIf="this.userProfile" class="login-Name">
+          Hello~ {{this.userProfile.name}}
+        </li>
+        <li>
+          <button *ngIf="!Token" mat-fab color="warn" (click)="login()"> Login </button>
+          <button *ngIf="Token" mat-fab color="primary" (click)="logout()">logout </button>
+        </li>
         <li>
           <a routerLink="/">Home</a>
         </li>
@@ -51,7 +58,30 @@
 <button mat-raised-button color="warn" (click)="getToken()"> Get </button>
 <button mat-raised-button color="primary" *ngIf="!Token" (click)="login()"> Login </button>
 <button mat-raised-button *ngIf="Token" (click)="logout()"> Logout </button>
-<button mat-raised-button color="accent" (click)="Test()"> Test </button>
+<button mat-raised-button color="accent" (click)="getUserProfile()"> Test </button>
 <h1 *ngIf="!Token">Please login first, thanks</h1>
-<!-- {{this.userProfile.email}} -->
+
+<div *ngIf="this.userProfile">
+  <table class="table table-bordered table-sm table-props">
+    <tr>
+      <th>Name</th>
+      <td> {{this.userProfile.name}}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td> {{this.userProfile.email}}</td>
+    </tr>
+    <tr>
+      <th>AccessToken</th>
+      <td> <code>{{this.AccessToken}}</code></td>
+    </tr>
+    <tr>
+      <th>IdentityClaims</th>
+      <td>{{this.IdentityClaims|json}}</td>
+    </tr>
+  </table>
+</div>
+<div>
+
+</div>
 <router-outlet *ngIf="Token"></router-outlet>
