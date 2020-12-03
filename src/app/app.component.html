@@ -20,6 +20,15 @@
   <div>
     <nav>
       <ul>
+        <li *ngIf="loggedIn" class="login-Name">
+          Hello {{user.name}}
+        </li>
+        <li>
+          <button *ngIf="!loggedIn" mat-fab color="warn" (click)="signInWithGoogle()"> Google </button>
+          <button *ngIf="loggedIn" mat-fab color="primary" (click)="signOut()">
+            <mat-icon>logout</mat-icon>
+          </button>
+        </li>
         <li>
           <a routerLink="/">Home</a>
         </li>
@@ -46,7 +55,13 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<button mat-raised-button color="warn" (click)="signInWithGoogle()"> Google </button>
+<!-- <button mat-raised-button color="warn" (click)="signInWithGoogle()"> Google </button> -->
+<div *ngIf="!loggedIn">
+  <h2>Welcome to the FrostyFox</h2>
+  <p>
+    Please login first, thanks.
+  </p>
+</div>
 <div *ngIf="loggedIn">
   <h1>Logged in Google</h1>
   <img src="{{ user.photoUrl }}">
@@ -57,7 +72,7 @@
     <h3>{{user.authToken}}</h3>
   </div>
   <button mat-raised-button (click)="refreshToken()"> RefreshToken </button>
-  <button mat-raised-button color="primary" (click)="signOut()"> Logout </button>
+  <!-- <button mat-raised-button color="primary" (click)="signOut()"> Logout </button> -->
 </div>
 
 

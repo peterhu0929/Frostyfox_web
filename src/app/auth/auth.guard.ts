@@ -1,3 +1,4 @@
+import { ProgramsService } from './../programs/programs.service';
 import { SocialAuthService } from 'angularx-social-login';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
@@ -7,7 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: SocialAuthService, private router: Router) {
+  constructor(private authService: SocialAuthService
+    , private router: Router
+    , private programService: ProgramsService) {
   }
   loggedIn: boolean;
   canActivate(
@@ -30,7 +33,8 @@ export class AuthGuard implements CanActivate {
     }
     else {
       console.log('logged=>' + this.loggedIn);
-      console.log('AuthGuard#canActivate 被觸發了, 你沒有授權！將跳轉回前台頁面');
+      // console.log('AuthGuard#canActivate 被觸發了, 你沒有授權！將跳轉回前台頁面');
+      this.programService.OpenSanckBar('Hello', 'Please login first,thanks');
       return this.router.parseUrl('/home');
     }
   }

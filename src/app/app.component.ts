@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   }
   signOut(): void {
     this.authService.signOut();
-    this.router.navigateByUrl('/home');
+    // this.router.navigateByUrl('/home');
   }
   refreshToken(): void {
     const refresh$ = of(this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID));
