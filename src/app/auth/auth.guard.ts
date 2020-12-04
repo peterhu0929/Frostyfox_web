@@ -24,15 +24,16 @@ export class AuthGuard implements CanActivate {
     this.authService.authState.subscribe(
       x => {
         this.loggedIn = (x != null),
-          console.log('logged=>' + this.loggedIn);
+          console.log(x);
+        console.log('logged=>1' + this.loggedIn);
       }
     );
     if (this.loggedIn) {
-      console.log('logged=>' + this.loggedIn);
+      console.log('logged=>2' + this.loggedIn);
       return true;
     }
     else {
-      console.log('logged=>' + this.loggedIn);
+      console.log('logged=>3' + this.loggedIn);
       // console.log('AuthGuard#canActivate 被觸發了, 你沒有授權！將跳轉回前台頁面');
       this.programService.OpenSanckBar('Hello', 'Please login first,thanks');
       return this.router.parseUrl('/home');
