@@ -33,11 +33,6 @@ export class AppComponent implements OnInit {
     this.oAuthService.configure(authCodeFlowConfig);
     this.oAuthService.tokenValidationHandler = new JwksValidationHandler();
     this.oAuthService.loadDiscoveryDocumentAndTryLogin();
-    // this.oAuthService.events
-    //   .pipe(filter(e => e.type === 'token_received'))
-    //   .subscribe(
-    //     x => { this.Test(); console.log(x); }
-    //   );
   }
   login() {
     this.oAuthService.initImplicitFlow();
